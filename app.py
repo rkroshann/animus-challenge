@@ -3,7 +3,7 @@ import hashlib
 
 app = Flask(__name__)
 
-FLAG = "vault{d35m0nd_m1l35}"
+FLAG = "vault{FOSSUNITED}"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -26,4 +26,5 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
+
 
