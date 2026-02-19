@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Animus Terminal</title>
+    <title>Animus Console</title>
     <style>
         body {
             background: #0b0f14;
             color: #00ff9c;
             font-family: monospace;
-            padding: 40px;
+            text-align: center;
+            padding-top: 80px;
         }
-        .box {
+        input {
+            padding: 10px;
+            width: 300px;
+            background: black;
+            color: #00ff9c;
             border: 1px solid #00ff9c;
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
         }
-        h1 { color: #00ffaa; }
+        button {
+            padding: 10px 20px;
+            background: #00ff9c;
+            border: none;
+            font-weight: bold;
+        }
+        .msg {
+            margin-top: 20px;
+            color: #00ffaa;
+        }
     </style>
 </head>
 <body>
-<div class="box">
-<h1>🧠 ANIMUS INTERFACE</h1>
 
-<p>System boot sequence complete.</p>
+<h1>🧠 ANIMUS TERMINAL</h1>
 
-<p>
-Access to genetic memory archives requires administrator authorization.
-</p>
+<p>Enter synchronization command:</p>
 
-<h3>📖 Mission Brief</h3>
+<form method="POST">
+    <input name="text" placeholder="Enter command..." required>
+    <br><br>
+    <button type="submit">EXECUTE</button>
+</form>
 
-<p>
-A forgotten Animus device has been reactivated.
-The system trusts its users more than it should.
-Find a way to access restricted memory fragments.
-</p>
+{% if message %}
+<div class="msg">{{ message }}</div>
+{% endif %}
 
-<h3>🎯 Objective</h3>
-
-<p>
-Obtain administrator privileges and recover the hidden flag.
-</p>
-
-<p>Hint: Not everything is verified server-side.</p>
-
-</div>
 </body>
 </html>
