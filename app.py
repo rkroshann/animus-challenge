@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, make_response
 import hashlib
+import base64
 
 app = Flask(__name__)
 
@@ -12,8 +13,10 @@ def index():
     if request.method == "POST":
         user_input = request.form.get("text", "")
 
-        # Hash the flag (hidden in cookie)
-        hashed_flag = hashlib.sha256(FLAG.encode()).hexdigest()
+        # Hash the flag → Base64 encoded
+        hashed_flag = base64.b64encode(
+            hashlib.sha256(FLAG.encode()).digest()
+        ).decode()
 
         message = f"Input '{user_input}' processed successfully."
 
@@ -26,5 +29,3 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
-
-
