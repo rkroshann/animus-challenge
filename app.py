@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, make_response
-import hashlib
 import base64
 
 app = Flask(__name__)
@@ -13,15 +12,13 @@ def index():
     if request.method == "POST":
         user_input = request.form.get("text", "")
 
-        # Hash the flag → Base64 encoded
-        hashed_flag = base64.b64encode(
-            hashlib.sha256(FLAG.encode()).digest()
-        ).decode()
+        # Encode flag directly to Base64 (NO hashing)
+        encoded_flag = base64.b64encode(FLAG.encode()).decode()
 
         message = f"Input '{user_input}' processed successfully."
 
         response = make_response(render_template("index.html", message=message))
-        response.set_cookie("memory_fragment", hashed_flag)
+        response.set_cookie("memory_fragment", encoded_flag)
 
         return response
 
